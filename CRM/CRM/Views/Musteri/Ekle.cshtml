@@ -1,0 +1,59 @@
+﻿@model CRM.DTOs.MusteriEkleDTO
+
+@{
+    ViewData["Title"] = "Müşteri Ekle";
+}
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>🏢 Yeni Müşteri Ekle</h2>
+
+        <form asp-action="Ekle" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👤 Ad Soyad</label>
+                        <input asp-for="AdSoyad" class="form-control" />
+                        <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📞 Telefon</label>
+                        <input asp-for="Telefon" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>📧 E-posta</label>
+                    <input asp-for="Eposta" class="form-control" />
+                </div>
+
+                <div class="col-md-6">
+                    <label>👨‍💼 Sorumlu Kullanıcı</label>
+                    <select asp-for="KullaniciId" asp-items="ViewBag.Kullanicilar" class="form-control">
+                        <option value="">-- Kullanıcı Seçin --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>🏠 Adres</label>
+                <input asp-for="Adres" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>🏷️ Etiketler</label>
+                <select asp-for="SecilenEtiketler" asp-items="ViewBag.Etiketler" class="form-control" multiple></select>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">❌ İptal</a>
+            </div>
+        </form>
+    </div>
+</div>

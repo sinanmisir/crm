@@ -1,0 +1,348 @@
+﻿@model CRM.DTOs.MusteriDTO
+
+@{
+    ViewData["Title"] = "Müşteri Detayları";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+
+<div class="container">
+    <div class="card">
+        <div class="customer-header">
+            <div class="customer-avatar">
+                @Model.AdSoyad?.Substring(0, 1).ToUpper()
+            </div>
+            <div class="customer-info">
+                <h2>@Model.AdSoyad</h2>
+                <p>Müşteri Detayları</p>
+
+                @if (Model.Etiketler?.Any() == true)
+                {
+                        <div class="mt-2">
+                        @foreach (var etiket in Model.Etiketler)
+                        {
+                                    <span class="badge bg-info text-dark me-1">🏷️ @etiket</span>
+                        }
+                        </div>
+                }
+            </div>
+        </div>
+
+        <div class="customer-contact">
+            <h4>📞 İletişim Bilgileri</h4>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>@Model.Eposta</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>@Model.Telefon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/Not/Ekle?musteriId=@Model.Id" class="btn btn-primary">
+                📝 Not Ekle
+            </a>
+            <a href="/Gorev/Ekle?musteriId=@Model.Id" class="btn btn-success">
+                ✅ Görev Ekle
+            </a>
+            <a href="/Firsat/Ekle?musteriId=@Model.Id" class="btn btn-warning">
+                💼 Fırsat Ekle
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h4>📝 Notlar</h4>
+                @if (Model.Notlar?.Any() == true)
+                {
+                    <div class="notes-list">
+                        @foreach (var not in Model.Notlar)
+                        {
+                            <div class="note-item">
+                                <div class="note-header">
+                                    <strong>@not.Baslik</strong>
+                                    <small>📅 @not.Tarih?.ToShortDateString()</small>
+                                </div>
+                                <p>@not.Icerik</p>
+                                <form asp-controller="Not" asp-action="Sil" asp-route-id="@not.Id" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Bu notu silmek istediğinize emin misiniz?')">
+                                        🗑️ Sil
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <p>📝 Not bulunmamaktadır.</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <h4>✅ Görevler</h4>
+                @if (Model.Gorevler?.Any() == true)
+                {
+                    <div class="tasks-list">
+                        @foreach (var gorev in Model.Gorevler)
+                        {
+                            <div class="task-item">
+                                <div class="task-header">
+                                    <span>@gorev.Aciklama</span>
+                                    <span class="badge @(gorev.Durum == "Tamamlandı" ? "bg-success" : gorev.Durum == "Bekliyor" ? "bg-warning" : "bg-info")">
+                                        @gorev.Durum
+                                    </span>
+                                </div>
+                                <div class="task-details">
+                                    <small>👨‍💼 Sorumlu: @gorev.SorumluKullaniciAd</small><br />
+                                    <small>🙍‍♂️ Kişi: @gorev.KisiAd</small><br />
+                                    <small>📅 @gorev.SonTarih?.ToShortDateString()</small>
+                                </div>
+                                <form asp-controller="Gorev" asp-action="Sil" asp-route-id="@gorev.Id" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Bu görevi silmek istediğinize emin misiniz?')">
+                                        🗑️ Sil
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <p>✅ Görev bulunmamaktadır.</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h4>💼 Fırsatlar</h4>
+                @if (Model.Firsatlar?.Any() == true)
+                {
+                    <div class="opportunities-list">
+                        @foreach (var f in Model.Firsatlar)
+                        {
+                            <div class="opportunity-item">
+                                <div class="opportunity-header">
+                                    <strong>@f.Baslik</strong>
+                                    <span class="opportunity-stage">@f.Asama</span>
+                                </div>
+                                <div class="opportunity-details">
+                                    <span>💰 @f.TahminiGelir ₺</span>
+                                    <span>📅 @f.Tarih?.ToShortDateString()</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <p>💼 Fırsat bulunmamaktadır.</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <h4>👥 İlgili Kişiler</h4>
+                @if (Model.Kisiler?.Any() == true)
+                {
+                    <div class="contacts-list">
+                        @foreach (var kisi in Model.Kisiler)
+                        {
+                            <div class="contact-person">
+                                <div class="person-avatar">
+                                    @kisi.AdSoyad?.Substring(0, 1).ToUpper()
+                                </div>
+                                <div class="person-info">
+                                    <strong>@kisi.AdSoyad</strong>
+                                    <small>@kisi.Gorev</small>
+                                    <div class="person-contact">
+                                        <span>📞 @kisi.Telefon</span>
+                                        <span>📧 @kisi.Eposta</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <p>👥 Bu müşteriye henüz kişi eklenmemiş.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .customer-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .customer-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .customer-info h2 {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .customer-info p {
+        margin: 0;
+        color: var(--text-muted);
+    }
+
+    .customer-contact {
+        margin-bottom: 2rem;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .contact-icon {
+        font-size: 1.2rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .notes-list, .tasks-list, .opportunities-list, .contacts-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .note-item, .task-item, .opportunity-item {
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .note-header, .task-header, .opportunity-header {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .task-details, .opportunity-details {
+        display: flex;
+        gap: 1rem;
+        margin: 0.5rem 0;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+    }
+
+    .opportunity-stage {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .contact-person {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .person-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--success-color), #059669);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .person-info strong {
+        display: block;
+        color: var(--text-primary);
+    }
+
+    .person-info small {
+        display: block;
+        color: var(--text-muted);
+        margin-bottom: 0.25rem;
+    }
+
+    .person-contact {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+    }
+</style>

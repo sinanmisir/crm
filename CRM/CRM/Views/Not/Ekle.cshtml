@@ -1,0 +1,71 @@
+﻿@model CRM.DTOs.NotEkleDTO
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Not Ekle";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+        }
+
+        <h2>📝 Yeni Not Ekle</h2>
+
+        <form asp-action="Ekle" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>🏢 Müşteri</label>
+                        <select asp-for="MusteriId" asp-items="ViewBag.Musteriler" class="form-control">
+                            <option value="">-- Müşteri Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👤 Kişi (isteğe bağlı)</label>
+                        <select asp-for="KisiId" asp-items="ViewBag.Kisiler" class="form-control">
+                            <option value="">-- Kişi Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📋 Başlık</label>
+                        <input asp-for="Baslik" class="form-control" placeholder="Not başlığını girin" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📅 Tarih</label>
+                        <input asp-for="Tarih" type="date" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>📝 İçerik</label>
+                <textarea asp-for="Icerik" class="form-control" rows="5" placeholder="Not içeriğini girin..."></textarea>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">
+                    💾 Notu Kaydet
+                </button>
+                <a href="/Not/index" class="btn btn-secondary">
+                    ❌ İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

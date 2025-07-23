@@ -1,0 +1,167 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CRM
+build_property.RootNamespace = CRM
+build_property.ProjectDir = C:\Users\pc81\source\repos\CRM\CRM\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\pc81\source\repos\CRM\CRM
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Etiket/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRpa2V0XEVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Etiket/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRpa2V0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Firsat/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlyc2F0XEVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Firsat/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlyc2F0XEd1bmNlbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Firsat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlyc2F0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/AktifGorevler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcQWt0aWZHb3Jldmxlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcRWtsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcR3VuY2VsbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/Ozet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcT3pldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Gorev/Takvim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29yZXZcVGFrdmltLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Islem/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXNsZW1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Kisi/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2lzaVxFa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Kisi/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2lzaVxHdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Kisi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2lzaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Kullanici/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Kullanici/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Musteri/Detay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxEZXRheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Musteri/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxFa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Musteri/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxHdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Musteri/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Not/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90XEVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Not/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90XEd1bmNlbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Not/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Not/KisiNotlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90XEtpc2lOb3RsYXJpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Rapor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFwb3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pc81/source/repos/CRM/CRM/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-dwxmuyclez

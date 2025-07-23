@@ -1,0 +1,58 @@
+﻿@model CRM.Models.Kullanicilar
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">📝 Kayıt Ol</h2>
+
+        <form asp-action="Register" method="post">
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <input asp-for="AdSoyad" class="form-control" />
+                <span asp-validation-for="AdSoyad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <input asp-for="KullaniciAdi" class="form-control" />
+                <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>E-posta</label>
+                <input asp-for="Eposta" class="form-control" />
+                <span asp-validation-for="Eposta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Şifre</label>
+                <input asp-for="SifreHash" class="form-control" type="password" />
+                <span asp-validation-for="SifreHash" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Rol</label>
+                <select asp-for="Rol" class="form-control">
+                    <option>Kullanici</option>
+                    <option>Admin</option>
+                </select>
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">✅ Kayıt Ol</button>
+        </form>
+
+        <div class="mt-3 text-center">
+            <a asp-action="Login">Zaten hesabınız var mı? Giriş Yap</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

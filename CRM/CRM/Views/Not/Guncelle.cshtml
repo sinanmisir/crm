@@ -1,0 +1,67 @@
+﻿@model CRM.DTOs.NotGuncelleDTO
+
+@{
+    ViewData["Title"] = "Not Güncelle";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>✏️ Not Güncelle</h2>
+
+        <form asp-action="Guncelle" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>🏢 Müşteri</label>
+                        <select asp-for="MusteriId" asp-items="ViewBag.Musteriler" class="form-control">
+                            <option value="">-- Müşteri Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👤 Kişi</label>
+                        <select asp-for="KisiId" asp-items="ViewBag.Kisiler" class="form-control">
+                            <option value="">-- Kişi Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📋 Başlık</label>
+                        <input asp-for="Baslik" class="form-control" placeholder="Not başlığını girin" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📅 Tarih</label>
+                        <input asp-for="Tarih" type="datetime-local" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>📝 İçerik</label>
+                <textarea asp-for="Icerik" class="form-control" rows="5" placeholder="Not içeriğini girin..."></textarea>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">
+                    💾 Kaydet
+                </button>
+                <a href="/Not/index" class="btn btn-secondary">
+                    ❌ İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

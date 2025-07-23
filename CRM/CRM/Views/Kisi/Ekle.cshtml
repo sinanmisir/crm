@@ -1,0 +1,70 @@
+﻿@model CRM.Models.Kisiler
+
+@{
+    ViewData["Title"] = "Kişi Ekle";
+    var musteriler = ViewBag.Musteriler;
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>👤 Yeni Kişi Ekle</h2>
+
+        <form asp-action="Ekle" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👤 Ad Soyad</label>
+                        <input asp-for="AdSoyad" class="form-control" placeholder="Ad ve soyadı girin" />
+                        <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>💼 Görev</label>
+                        <input asp-for="Gorev" class="form-control" placeholder="Görev unvanını girin" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📞 Telefon</label>
+                        <input asp-for="Telefon" class="form-control" placeholder="Telefon numarasını girin" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📧 E-posta</label>
+                        <input asp-for="Eposta" class="form-control" placeholder="E-posta adresini girin" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>🏢 Ait Olduğu Müşteri</label>
+                <select asp-for="MusteriId" class="form-control">
+                    <option value="">-- Müşteri Seçin --</option>
+                    @foreach (var musteri in musteriler)
+                    {
+                        <option value="@musteri.Id">@musteri.AdSoyad</option>
+                    }
+                </select>
+                <span asp-validation-for="MusteriId" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">
+                    💾 Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    ❌ İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

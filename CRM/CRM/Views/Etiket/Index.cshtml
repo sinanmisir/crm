@@ -1,0 +1,73 @@
+﻿@model List<CRM.DTOs.EtiketDTO>
+@{
+    ViewData["Title"] = "Etiket Yönetimi";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card mb-4">
+        <h2>🏷️ Etiket Yönetimi</h2>
+
+        @* Silme uyarısı varsa göster *@
+        @if (TempData["SilUyari"] != null)
+        {
+            <div class="alert alert-warning d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>@TempData["SilUyari"]</strong>
+                </div>
+                <form asp-action="SilOnayla" method="post" class="d-flex align-items-center gap-2">
+                    <input type="hidden" name="id" value="@TempData["SilEtiketId"]" />
+                    <button type="submit" class="btn btn-danger btn-sm">Evet, Sil</button>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">Vazgeç</a>
+                </form>
+            </div>
+        }
+
+        <form asp-action="Ekle" method="post" class="d-flex gap-2 mb-3">
+            <input type="text" name="ad" class="form-control" placeholder="Yeni etiket adı girin..." required />
+            <button type="submit" class="btn btn-primary">➕ Ekle</button>
+        </form>
+
+        @if (Model.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Etiket Adı</th>
+                        <th style="width: 150px;">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var etiket in Model)
+                    {
+                        <tr>
+                            <td>
+                                <form asp-action="Guncelle" method="post" class="d-flex">
+                                    <input type="hidden" name="id" value="@etiket.Id" />
+                                    <input type="text" name="ad" value="@etiket.Ad" class="form-control" />
+                                    <button type="submit" class="btn btn-sm btn-outline-success ms-2">💾</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form asp-action="Sil" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@etiket.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bu etiketi silmek istediğinize emin misiniz?')">
+                                        🗑️ Sil
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Henüz eklenmiş bir etiket yok. Yukarıdan yeni bir etiket ekleyebilirsiniz.
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model CRM.DTOs.KullaniciEkleDTO
+
+@{
+    ViewData["Title"] = "Kullanıcı Ekle";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>👤 Yeni Kullanıcı Ekle</h2>
+
+        <form asp-action="Ekle" method="post">
+            <div class="form-group">
+                <label>👤 Ad Soyad</label>
+                <input asp-for="AdSoyad" class="form-control" placeholder="Ad soyad girin" />
+            </div>
+
+            <div class="form-group">
+                <label>📧 E-posta</label>
+                <input asp-for="Eposta" class="form-control" placeholder="E-posta adresi girin" />
+            </div>
+
+            <div class="form-group">
+                <label>🔐 Şifre</label>
+                <input asp-for="Sifre" type="password" class="form-control" placeholder="Şifre girin" />
+            </div>
+
+            <div class="form-group">
+                <label>👮 Rol</label>
+                <select asp-for="Rol" class="form-control">
+                    <option value="">-- Rol Seçin --</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Kullanici">Kullanıcı</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">❌ İptal</a>
+            </div>
+        </form>
+    </div>
+</div>

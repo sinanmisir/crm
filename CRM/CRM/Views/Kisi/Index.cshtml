@@ -1,0 +1,73 @@
+﻿@model List<CRM.Models.Kisiler>
+
+@{
+    ViewData["Title"] = "Kişi Listesi";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    @if (TempData["Hata"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Hata"]</div>
+    }
+
+    <div class="card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>👥 İlgili Kişiler</h2>
+            <a asp-action="Ekle" class="btn btn-primary">
+                ➕ Yeni Kişi Ekle
+            </a>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>👤 Ad Soyad</th>
+                            <th>💼 Görev</th>
+                            <th>📞 Telefon</th>
+                            <th>📧 E-posta</th>
+                            <th>🏢 Müşteri</th>
+                            <th>⚙️ İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var kisi in Model)
+                        {
+                            <tr>
+                                <td><strong>@kisi.AdSoyad</strong></td>
+                                <td>@kisi.Gorev</td>
+                                <td>@kisi.Telefon</td>
+                                <td>@kisi.Eposta</td>
+                                <td>@kisi.Musteri?.AdSoyad</td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <a asp-action="Guncelle" asp-route-id="@kisi.Id" class="btn btn-sm btn-outline-primary">
+                                            ✏️ Düzenle
+                                        </a>
+                                        <form asp-action="Sil" asp-route-id="@kisi.Id" method="post" class="d-inline"
+                                              onsubmit="return confirm('Bu kişiyi silmek istediğinize emin misiniz?');">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                🗑️ Sil
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+                <h4>👥 Henüz kişi bulunmuyor</h4>
+                <p>İlk kişiyi eklemek için yukarıdaki butona tıklayın.</p>
+            </div>
+        }
+    </div>
+</div>

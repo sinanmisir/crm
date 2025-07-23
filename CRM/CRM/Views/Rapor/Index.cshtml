@@ -1,0 +1,149 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Raporlama Paneli";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <h2>📊 Raporlama Paneli</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">🏢</div>
+                <h5>Toplam Müşteri</h5>
+                <div class="stats-number">@Model.MusteriSayisi</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">✅</div>
+                <h5>Toplam Görev</h5>
+                <div class="stats-number">@Model.GorevSayisi</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">🎯</div>
+                <h5>Tamamlanan Görev</h5>
+                <div class="stats-number">@Model.TamamlananGorevSayisi</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">💼</div>
+                <h5>Toplam Fırsat</h5>
+                <div class="stats-number">@Model.FirsatSayisi</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">💰</div>
+                <h5>Tahmini Toplam Gelir</h5>
+                <div class="stats-number">@String.Format("{0:C}", Model.ToplamGelir)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h4>📈 Görev Durumu Dağılımı</h4>
+        <div class="chart-container">
+            <canvas id="gorevChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('gorevChart').getContext('2d');
+    const gorevChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Json.Serialize(((IDictionary<string, int>)Model.GorevDurumlari).Keys)),
+            datasets: [{
+                label: 'Görev Durumu',
+                data: @Html.Raw(Json.Serialize(((IDictionary<string, int>)Model.GorevDurumlari).Values)),
+                backgroundColor: [
+                    'rgba(16, 185, 129, 0.8)',
+                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(59, 130, 246, 0.8)'
+                ],
+                borderColor: [
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(59, 130, 246, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        });
+</script>
+
+<style>
+    .stats-card {
+        background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+        height: 100%;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-color);
+    }
+
+    .stats-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .stats-card h5 {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+    }
+
+    .stats-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .chart-container {
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>

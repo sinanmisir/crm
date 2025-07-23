@@ -1,0 +1,632 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="page-container">
+    <!-- Welcome Section -->
+    <section class="hero-section fade-in-up">
+        <div class="welcome-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>✨ CRM Yönetim Sistemi</span>
+            </div>
+            <h1 class="hero-title">
+                🚀 İş süreçlerinizi
+                <span class="gradient-text">kolaylaştırın</span>
+            </h1>
+            <p class="hero-description">
+                Modern ve kullanıcı dostu arayüzle müşteri ilişkilerinizi yönetin, 
+                görevlerinizi takip edin ve iş performansınızı artırın.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Müşteri</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Görev</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99%</span>
+                    <span class="stat-label">Memnuniyet</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <div class="card-icon gradient-bg-1">📊</div>
+                <div class="card-text">Analitik & Raporlama</div>
+            </div>
+            <div class="floating-card card-2">
+                <div class="card-icon gradient-bg-2">⚡</div>
+                <div class="card-text">Hızlı İşlem</div>
+            </div>
+            <div class="floating-card card-3">
+                <div class="card-icon gradient-bg-3">🎯</div>
+                <div class="card-text">Etkili Yönetim</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="actions-section fade-in-left">
+        <div class="section-header">
+            <h2 class="section-title">Hızlı İşlemler</h2>
+            <p class="section-subtitle">Sık kullanılan işlemlere anında erişin</p>
+        </div>
+        <div class="actions-grid">
+            <a href="/Musteri/Ekle" class="action-item">
+                <div class="action-icon customers">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="action-content">
+                    <h4>Yeni Müşteri</h4>
+                    <p>Müşteri ekle</p>
+                </div>
+            </a>
+            
+            <a href="/Gorev/Ekle" class="action-item">
+                <div class="action-icon tasks">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <div class="action-content">
+                    <h4>Yeni Görev</h4>
+                    <p>Görev oluştur</p>
+                </div>
+            </a>
+            
+            <a href="/Not/Ekle" class="action-item">
+                <div class="action-icon notes">
+                    <i class="fas fa-sticky-note"></i>
+                </div>
+                <div class="action-content">
+                    <h4>Yeni Not</h4>
+                    <p>Not kaydet</p>
+                </div>
+            </a>
+            
+            <a href="/Firsat/Ekle" class="action-item">
+                <div class="action-icon opportunities">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="action-content">
+                    <h4>Yeni Fırsat</h4>
+                    <p>Fırsat ekle</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Modules -->
+    <section class="modules-section fade-in-right">
+        <div class="section-header">
+            <h2 class="section-title">Modüller</h2>
+            <p class="section-subtitle">CRM sisteminin tüm özelliklerine erişin</p>
+        </div>
+        
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon customers">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3>Müşteri Yönetimi</h3>
+                        <p>Müşteri bilgilerini organize edin</p>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <span class="feature-badge">Profil Yönetimi</span>
+                    <span class="feature-badge">İletişim Takibi</span>
+                    <span class="feature-badge">Segmentasyon</span>
+                </div>
+                <a href="/Musteri/Index" class="module-link">
+                    <span>Müşterilere Git</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon tasks">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3>Görev Yönetimi</h3>
+                        <p>Görevleri takip edin ve yönetin</p>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <span class="feature-badge">Görev Takibi</span>
+                    <span class="feature-badge">Ekip Yönetimi</span>
+                    <span class="feature-badge">Zaman Çizelgesi</span>
+                </div>
+                <a href="/Gorev/Index" class="module-link">
+                    <span>Görevlere Git</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon notes">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3>Not Yönetimi</h3>
+                        <p>Önemli bilgileri kaydedin</p>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <span class="feature-badge">Müşteri Notları</span>
+                    <span class="feature-badge">Kategoriler</span>
+                    <span class="feature-badge">Arama</span>
+                </div>
+                <a href="/Not/Index" class="module-link">
+                    <span>Notlara Git</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon opportunities">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3>Fırsat Yönetimi</h3>
+                        <p>Satış fırsatlarını değerlendirin</p>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <span class="feature-badge">Kanban Görünümü</span>
+                    <span class="feature-badge">Gelir Tahmini</span>
+                    <span class="feature-badge">Aşama Takibi</span>
+                </div>
+                <a href="/Firsat/index" class="module-link">
+                    <span>Fırsatlara Git</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon reports">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3>Raporlama</h3>
+                        <p>Detaylı analizler ve istatistikler</p>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <span class="feature-badge">Performans Analizi</span>
+                    <span class="feature-badge">Grafik Raporlar</span>
+                    <span class="feature-badge">Veri İhracı</span>
+                </div>
+                <a href="/Rapor/Index" class="module-link">
+                    <span>Raporlara Git</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon users">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="module-info">
+                            <h3>Kullanıcı Yönetimi</h3>
+                            <p>Sistem kullanıcılarını yönetin</p>
+                        </div>
+                    </div>
+                    <div class="module-features">
+                        <span class="feature-badge">Kullanıcı Rolleri</span>
+                        <span class="feature-badge">Yetki Kontrolü</span>
+                        <span class="feature-badge">Güvenlik</span>
+                    </div>
+                    <a href="/Kullanici/Index" class="module-link">
+                        <span>Kullanıcılara Git</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+<style>
+/* Page Container */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    z-index: -1;
+}
+
+.welcome-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+
+.hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color), #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+
+.hero-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.floating-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+}
+
+.floating-card:hover {
+    transform: translateX(-8px) translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.card-1 {
+    animation: float 4s ease-in-out infinite;
+}
+
+.card-2 {
+    animation: float 4s ease-in-out infinite 1s;
+}
+
+.card-3 {
+    animation: float 4s ease-in-out infinite 2s;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-bg-1 {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.gradient-bg-2 {
+    background: linear-gradient(135deg, var(--success-color), #059669);
+}
+
+.gradient-bg-3 {
+    background: linear-gradient(135deg, var(--warning-color), #d97706);
+}
+
+.card-text {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Actions Section */
+.actions-section {
+    margin-bottom: 5rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.action-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.action-icon.customers { background: #2563eb; }
+.action-icon.tasks { background: #059669; }
+.action-icon.notes { background: #d97706; }
+.action-icon.opportunities { background: #dc2626; }
+
+.action-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.action-content p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Modules Section */
+.modules-section {
+    margin-bottom: 3rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.module-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.module-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.module-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.module-icon.customers { background: #2563eb; }
+.module-icon.tasks { background: #059669; }
+.module-icon.notes { background: #d97706; }
+.module-icon.opportunities { background: #dc2626; }
+.module-icon.reports { background: #0891b2; }
+.module-icon.users { background: #64748b; }
+
+.module-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.module-info p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.module-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-badge {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
+.module-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.module-link:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.module-link i {
+    transition: transform 0.3s ease;
+}
+
+.module-link:hover i {
+    transform: translateX(4px);
+}
+
+
+</style>

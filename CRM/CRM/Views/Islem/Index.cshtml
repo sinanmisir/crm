@@ -1,0 +1,40 @@
+﻿@model List<CRM.Models.IslemLog>
+@{
+    ViewData["Title"] = "📜 İşlem Geçmişi";
+}
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>📜 İşlem Geçmişi</h2>
+
+        @if (Model.Any())
+        {
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>👤 Kullanıcı</th>
+                        <th>🏢 Müşteri</th>
+                        <th>📌 İşlem</th>
+                        <th>📅 Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model)
+                    {
+                        <tr>
+                            <td>@log.KullaniciAd</td>
+                            <td>@log.Musteri?.AdSoyad</td>
+                            <td>@log.Islem</td>
+                            <td>@log.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">Kayıtlı işlem bulunamadı.</p>
+        }
+    </div>
+</div>

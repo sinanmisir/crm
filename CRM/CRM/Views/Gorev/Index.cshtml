@@ -1,0 +1,220 @@
+﻿@model List<CRM.DTOs.GorevDTO>
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div class="header-text">
+                <h1>📋 Görev Yönetimi</h1>
+                <p>Tüm görevlerinizi takip edin ve yönetin</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="/Gorev/Ekle" class="btn btn-primary btn-hero">
+                <i class="fas fa-plus"></i>
+                <span>Yeni Görev</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        @if (Model.Any())
+        {
+            <div class="table-header">
+                <h3>📊 Görev Listesi</h3>
+                <div class="table-stats">
+                    <span class="stat-badge">Toplam: @Model.Count</span>
+                    <span class="stat-badge success">Tamamlanan: @Model.Count(g => g.Durum == "Tamamlandı")</span>
+                    <span class="stat-badge warning">Bekleyen: @Model.Count(g => g.Durum == "Bekliyor")</span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>🏢 Müşteri</th>
+                            <th>👤 Kişi</th>
+                            <th>👨‍💼 Sorumlu</th>
+                            <th>📝 Açıklama</th>
+                            <th>📅 Son Tarih</th>
+                            <th>📊 Durum</th>
+                            <th>⚙️ İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var g in Model)
+                        {
+                            <tr>
+                                <td><strong>@g.MusteriAd</strong></td>
+                                <td>@g.KisiAd</td>
+                                <td>@g.SorumluKullaniciAd</td>
+                                <td>@g.Aciklama</td>
+                                <td>@g.SonTarih?.ToShortDateString()</td>
+                                <td>
+                                    <span class="badge @(g.Durum == "Tamamlandı" ? "bg-success" : g.Durum == "Bekliyor" ? "bg-warning" : "bg-info")">
+                                        @g.Durum
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <a asp-action="Guncelle" asp-route-id="@g.Id" class="btn btn-sm btn-outline-primary">
+                                            ✏️ Düzenle
+                                        </a>
+                                        <form asp-action="Sil" asp-route-id="@g.Id" method="post" class="d-inline"
+                                              onsubmit="return confirm('Bu görevi silmek istediğinize emin misiniz?');">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                🗑️ Sil
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+                <h4>📋 Henüz görev bulunmuyor</h4>
+                <p>İlk görevinizi eklemek için yukarıdaki butona tıklayın.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--success-color), #059669);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .header-text h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--text-primary), var(--success-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .header-text p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    .btn-hero {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+        .table-header h3 {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+    .table-stats {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .stat-badge {
+        padding: 0.5rem 1rem;
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+        .stat-badge.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .stat-badge.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--warning-color);
+            color: var(--warning-color);
+        }
+
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-success {
+        background: linear-gradient(135deg, var(--success-color), #059669) !important;
+        color: white !important;
+    }
+
+    .bg-warning {
+        background: linear-gradient(135deg, var(--warning-color), #d97706) !important;
+        color: white !important;
+    }
+
+    .bg-info {
+        background: linear-gradient(135deg, var(--info-color), #2563eb) !important;
+        color: white !important;
+    }
+</style>

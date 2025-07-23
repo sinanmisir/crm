@@ -1,0 +1,70 @@
+﻿@model CRM.DTOs.GorevGuncelleDTO
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>✏️ Görev Güncelle</h2>
+
+        <form asp-action="Guncelle" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>🏢 Müşteri</label>
+                        <select asp-for="MusteriId" asp-items="ViewBag.Musteriler" class="form-control"></select>
+                        <small class="form-text">Seçilen: @Model.MusteriAd</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👤 Kişi</label>
+                        <select asp-for="KisiId" asp-items="ViewBag.Kisiler" class="form-control"></select>
+                        <small class="form-text">Seçilen: @Model.KisiAd</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>👨‍💼 Sorumlu Kullanıcı</label>
+                        <select asp-for="SorumluKullaniciId" asp-items="ViewBag.Kullanicilar" class="form-control"></select>
+                        <small class="form-text">Seçilen: @Model.SorumluKullaniciAd</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📌 Durum</label>
+                        <select asp-for="Durum" asp-items="ViewBag.Durumlar" class="form-control">
+                            <option value="">-- Durum Seçin --</option>
+                        </select>
+                        <span asp-validation-for="Durum" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>📝 Açıklama</label>
+                <textarea asp-for="Aciklama" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>📅 Son Tarih</label>
+                <input asp-for="SonTarih" type="date" class="form-control" />
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">
+                    💾 Kaydet
+                </button>
+                <a href="/Gorev/index" class="btn btn-secondary">
+                    ❌ İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

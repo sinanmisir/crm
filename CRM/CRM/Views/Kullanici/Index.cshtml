@@ -1,0 +1,153 @@
+﻿@model List<CRM.Models.Kullanicilar>
+
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>👥 Kullanıcı Yönetimi</h2>
+        <a asp-action="Ekle" class="btn btn-primary">
+            ➕ Yeni Kullanıcı
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var kullanici in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="user-card">
+                        <div class="user-card-header">
+                            <div class="user-avatar-large">
+                                @(kullanici.AdSoyad?.Substring(0, 1).ToUpper())
+                            </div>
+                            <div class="user-info-card">
+                                <h5 class="user-name-card">@kullanici.AdSoyad</h5>
+                                <p class="user-username">@@@kullanici.KullaniciAdi</p>
+                            </div>
+                        </div>
+
+                        <div class="user-card-body">
+                            <div class="user-detail">
+                                <span>📧 @kullanici.Eposta</span>
+                            </div>
+
+                            <div class="user-role">
+                                <span class="role-badge role-@(kullanici.Rol?.ToLower())">
+                                    @if (kullanici.Rol == "Admin")
+                                    {
+                                        <text>👑</text>
+                                    }
+                                    else
+                                    {
+                                        <text>👤</text>
+                                    }
+                                    @kullanici.Rol
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+            <h4>👥 Henüz kullanıcı bulunmuyor</h4>
+            <p>İlk kullanıcıyı eklemek için yukarıdaki butona tıklayın.</p>
+        </div>
+    }
+</div>
+
+<style>
+    .user-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+    .user-card-header {
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .user-avatar-large {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 2rem;
+        margin: 0 auto 1rem;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .user-name-card {
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .user-username {
+        margin: 0;
+        opacity: 0.8;
+        font-size: 0.9rem;
+    }
+
+    .user-card-body {
+        padding: 1.5rem;
+    }
+
+    .user-detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .user-role {
+        text-align: center;
+    }
+
+    .role-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+
+    .role-admin {
+        background: linear-gradient(135deg, var(--warning-color), #d97706);
+        color: white;
+    }
+
+    .role-kullanici {
+        background: linear-gradient(135deg, var(--success-color), #059669);
+        color: white;
+    }
+</style>

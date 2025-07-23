@@ -1,0 +1,129 @@
+﻿@model Dictionary<DayOfWeek, List<CRM.Models.Gorevler>>
+
+@{
+    ViewData["Title"] = "Görev Takvimi";
+    var gunler = new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+    string GunAdi(DayOfWeek day) => day switch
+    {
+        DayOfWeek.Monday => "Pazartesi",
+        DayOfWeek.Tuesday => "Salı",
+        DayOfWeek.Wednesday => "Çarşamba",
+        DayOfWeek.Thursday => "Perşembe",
+        DayOfWeek.Friday => "Cuma",
+        _ => day.ToString()
+    };
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<form>@Html.AntiForgeryToken()</form> <!-- Token for AJAX -->
+
+<div class="container">
+    <h2>🗓️ Haftalık Görev Takvimi</h2>
+    <div class="row">
+        @foreach (var gun in gunler)
+        {
+            var gorevler = Model.ContainsKey(gun) ? Model[gun] : new List<CRM.Models.Gorevler>();
+            <div class="col-md-5">
+                <div class="card mb-20">
+                    <div class="card-header text-center fw-bold">@GunAdi(gun)</div>
+                    <div class="card-body sortable-day" data-day="@((int)gun)" style="min-height: 150px;">
+                        @foreach (var gorev in gorevler.OrderBy(g => g.SonTarih))
+                        {
+                            var renk = gorev.Durum switch
+                            {
+                                "Tamamlandı" => "success",
+                                "Bekliyor" => "warning",
+                                "Devam Ediyor" => "info",
+                                _ => "secondary"
+                            };
+                            <div class="badge bg-@renk w-100 text-truncate mb-2"
+                                 data-id="@gorev.Id"
+                                 data-day="@((int)gorev.SonTarih?.DayOfWeek)"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#gorevModal"
+                                 data-baslik="@gorev.Aciklama"
+                                 data-durum="@gorev.Durum"
+                                 data-sontarih="@gorev.SonTarih?.ToShortDateString()"
+                                 data-sorumlu="@gorev.SorumluKullanici?.AdSoyad"
+                                 draggable="true">
+                                @gorev.Aciklama
+                            </div>
+                        }
+
+                        @if (!gorevler.Any())
+                        {
+                            <div class="text-muted small text-center">Görev yok</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="gorevModal" tabindex="-1" aria-labelledby="gorevModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Görev Detayı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>📝 Açıklama:</strong> <span id="modalAciklama"></span></p>
+                <p><strong>📅 Son Tarih:</strong> <span id="modalTarih"></span></p>
+                <p><strong>👨‍💼 Sorumlu:</strong> <span id="modalSorumlu"></span></p>
+                <p><strong>📌 Durum:</strong> <span id="modalDurum"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Modal içerik doldur
+        const modal = document.getElementById('gorevModal');
+        modal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            document.getElementById('modalAciklama').innerText = button.dataset.baslik;
+            document.getElementById('modalTarih').innerText = button.dataset.sontarih;
+            document.getElementById('modalSorumlu').innerText = button.dataset.sorumlu;
+            document.getElementById('modalDurum').innerText = button.dataset.durum;
+        });
+
+        // Drag & Drop
+        document.querySelectorAll('.sortable-day').forEach(dayContainer => {
+            new Sortable(dayContainer, {
+                group: 'gorevler',
+                animation: 150,
+                onAdd: function (evt) {
+                    const droppedEl = evt.item;
+                    const gorevId = droppedEl.dataset.id;
+                    const hedefGun = parseInt(evt.to.dataset.day);
+
+                    const now = new Date();
+                    const today = now.getDay(); // 0 = Pazar
+                    let diff = hedefGun - today;
+                    if (diff < 0) diff += 7; // ileri hafta
+
+                    const newDate = new Date(now);
+                    newDate.setDate(now.getDate() + diff);
+                    const isoDate = newDate.toISOString().split('T')[0];
+
+                    fetch('/Gorev/GunGuncelle', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                        },
+                        body: JSON.stringify({ id: parseInt(gorevId), yeniTarih: isoDate })
+                    }).then(resp => {
+                        if (!resp.ok) alert("Görev güncellenemedi.");
+                    });
+                }
+            });
+        });
+    </script>
+}

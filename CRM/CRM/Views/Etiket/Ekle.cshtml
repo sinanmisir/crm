@@ -1,0 +1,21 @@
+﻿@model CRM.Models.Etiketler
+
+@{
+    ViewData["Title"] = "Etiket Ekle";
+}
+
+<div class="container">
+    <div class="card">
+        <h2>@ViewData["Title"]</h2>
+        <form asp-action="@ViewContext.RouteData.Values["action"]" method="post">
+            <div class="form-group">
+                <label>Etiket Adı</label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">💾 Kaydet</button>
+            <a asp-action="Index" class="btn btn-secondary mt-3">❌ İptal</a>
+        </form>
+    </div>
+</div>

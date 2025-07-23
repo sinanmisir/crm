@@ -1,0 +1,68 @@
+﻿@model CRM.DTOs.FirsatGuncelleDTO
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Fırsat Güncelle";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>✏️ Fırsat Güncelle</h2>
+
+        <form asp-action="Guncelle" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>🏢 Müşteri</label>
+                        <select asp-for="MusteriId" asp-items="ViewBag.Musteriler" class="form-control">
+                            <option value="">-- Müşteri Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📋 Başlık</label>
+                        <input asp-for="Baslik" class="form-control" placeholder="Fırsat başlığını girin" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>📊 Aşama</label>
+                        <select asp-for="Asama" asp-items="Html.GetEnumSelectList<CRM.Models.FirsatAsama>()" class="form-control">
+                            <option value="">-- Aşama Seçin --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>💰 Tahmini Gelir (₺)</label>
+                        <input asp-for="TahminiGelir" class="form-control" placeholder="0.00" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>📅 Tarih</label>
+                <input asp-for="Tarih" type="date" class="form-control" />
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">
+                    💾 Kaydet
+                </button>
+                <a href="/Firsat/index" class="btn btn-secondary">
+                    ❌ İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

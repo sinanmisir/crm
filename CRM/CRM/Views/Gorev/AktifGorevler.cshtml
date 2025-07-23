@@ -1,0 +1,76 @@
+﻿@model List<CRM.DTOs.GorevDTO>
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h2>🎯 Aktif Görevlerim</h2>
+
+                @if (Model.Any())
+                {
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>🏢 Müşteri</th>
+                                    <th>👤 Kişi</th>
+                                    <th>📝 Açıklama</th>
+                                    <th>📊 Durum</th>
+                                    <th>📅 Son Tarih</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var gorev in Model)
+                                {
+                                    <tr>
+                                        <td><strong>@gorev.MusteriAd</strong></td>
+                                        <td>@gorev.KisiAd</td>
+                                        <td>@gorev.Aciklama</td>
+                                        <td>
+                                            <span class="badge @(gorev.Durum == "Tamamlandı" ? "bg-success" : gorev.Durum == "Bekliyor" ? "bg-warning" : "bg-info")">
+                                                @gorev.Durum
+                                            </span>
+                                        </td>
+                                        <td>@gorev.SonTarih?.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+                        <h4>🎉 Tebrikler!</h4>
+                        <p>Şu anda aktif göreviniz bulunmuyor.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .bg-success {
+        background: linear-gradient(135deg, var(--success-color), #059669);
+    }
+
+    .bg-warning {
+        background: linear-gradient(135deg, var(--warning-color), #d97706);
+    }
+
+    .bg-info {
+        background: linear-gradient(135deg, var(--info-color), #2563eb);
+    }
+</style>

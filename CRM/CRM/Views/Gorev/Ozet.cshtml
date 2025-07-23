@@ -1,0 +1,506 @@
+﻿@model CRM.DTOs.GorevOzetViewModel
+@{
+    ViewData["Title"] = "Görev Özeti";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <!-- Header Section -->
+    <div class="page-header mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">
+                    <i class="fas fa-chart-pie me-3"></i>Görev Özeti
+                </h1>
+                <p class="page-subtitle">Günlük görev durumunuzu takip edin</p>
+            </div>
+            <div class="header-actions">
+                <a href="@Url.Action("Index", "Gorev")" class="btn btn-outline-primary">
+                    <i class="fas fa-list me-2"></i>Tüm Görevler
+                </a>
+                <a href="@Url.Action("Takvim", "Gorev")" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt me-2"></i>Takvim Görünümü
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stats-card today-tasks">
+                <div class="stats-icon">📅</div>
+                <div class="stats-number">@Model.Bugun.Count()</div>
+                <h5>Bugün Bitenler</h5>
+                <div class="stats-trend">
+                    <i class="fas fa-clock"></i>
+                    <span>Son tarih bugün</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card upcoming-tasks">
+                <div class="stats-icon">⏳</div>
+                <div class="stats-number">@Model.Yaklasan.Count()</div>
+                <h5>Yaklaşan Görevler</h5>
+                <div class="stats-trend">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>24 saat içinde</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card overdue-tasks">
+                <div class="stats-icon">⚠️</div>
+                <div class="stats-number">@Model.Geciken.Count()</div>
+                <h5>Geciken Görevler</h5>
+                <div class="stats-trend">
+                    <i class="fas fa-times-circle"></i>
+                    <span>Acil müdahale</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card total-tasks">
+                <div class="stats-icon">📊</div>
+                <div class="stats-number">@(Model.Bugun.Count() + Model.Yaklasan.Count() + Model.Geciken.Count())</div>
+                <h5>Toplam Aktif</h5>
+                <div class="stats-trend">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tüm görevler</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Cards -->
+    <div class="row">
+        <!-- Today's Tasks -->
+        <div class="col-lg-4 mb-4">
+            <div class="task-column today-column">
+                <div class="task-column-header">
+                    <div class="column-icon">📅</div>
+                    <div class="column-info">
+                        <h4>Bugün Bitmesi Gerekenler</h4>
+                        <span class="task-count">@Model.Bugun.Count() görev</span>
+                    </div>
+                </div>
+                <div class="task-list">
+                    @if (Model.Bugun.Any())
+                    {
+                        @foreach (var g in Model.Bugun)
+                        {
+                            <div class="task-item today-task">
+                                <div class="task-priority high"></div>
+                                <div class="task-content">
+                                    <h6 class="task-title">@g.Aciklama</h6>
+                                    <div class="task-meta">
+                                        <span class="task-customer">
+                                            <i class="fas fa-user me-1"></i>@g.MusteriAd
+                                        </span>
+                                        <span class="task-time">
+                                            <i class="fas fa-clock me-1"></i>Bugün
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <div class="empty-icon">🎉</div>
+                            <h5>Harika!</h5>
+                            <p>Bugün bitmesi gereken görev yok.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Tasks -->
+        <div class="col-lg-4 mb-4">
+            <div class="task-column upcoming-column">
+                <div class="task-column-header">
+                    <div class="column-icon">⏳</div>
+                    <div class="column-info">
+                        <h4>Yaklaşan Görevler</h4>
+                        <span class="task-count">@Model.Yaklasan.Count() görev</span>
+                    </div>
+                </div>
+                <div class="task-list">
+                    @if (Model.Yaklasan.Any())
+                    {
+                        @foreach (var g in Model.Yaklasan)
+                        {
+                            <div class="task-item upcoming-task">
+                                <div class="task-priority medium"></div>
+                                <div class="task-content">
+                                    <h6 class="task-title">@g.Aciklama</h6>
+                                    <div class="task-meta">
+                                        <span class="task-customer">
+                                            <i class="fas fa-user me-1"></i>@g.MusteriAd
+                                        </span>
+                                        <span class="task-time">
+                                            <i class="fas fa-calendar me-1"></i>@g.SonTarih?.ToShortDateString()
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <div class="empty-icon">😌</div>
+                            <h5>Rahat ol!</h5>
+                            <p>24 saat içinde bitmesi gereken görev yok.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue Tasks -->
+        <div class="col-lg-4 mb-4">
+            <div class="task-column overdue-column">
+                <div class="task-column-header">
+                    <div class="column-icon">⚠️</div>
+                    <div class="column-info">
+                        <h4>Geciken Görevler</h4>
+                        <span class="task-count">@Model.Geciken.Count() görev</span>
+                    </div>
+                </div>
+                <div class="task-list">
+                    @if (Model.Geciken.Any())
+                    {
+                        @foreach (var g in Model.Geciken)
+                        {
+                            <div class="task-item overdue-task">
+                                <div class="task-priority urgent"></div>
+                                <div class="task-content">
+                                    <h6 class="task-title">@g.Aciklama</h6>
+                                    <div class="task-meta">
+                                        <span class="task-customer">
+                                            <i class="fas fa-user me-1"></i>@g.MusteriAd
+                                        </span>
+                                        <span class="task-time overdue-time">
+                                            <i class="fas fa-exclamation-triangle me-1"></i>@g.SonTarih?.ToShortDateString()
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <div class="empty-icon">🎉</div>
+                            <h5>Mükemmel!</h5>
+                            <p>Geciken görev yok!</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-bolt me-2"></i>Hızlı İşlemler
+                </h5>
+                <div class="action-buttons">
+                    <a href="@Url.Action("Create", "Gorev")" class="btn btn-success">
+                        <i class="fas fa-plus me-2"></i>Yeni Görev Ekle
+                    </a>
+                    <a href="@Url.Action("Index", "Gorev", new { durum = "Tamamlandı" })" class="btn btn-info">
+                        <i class="fas fa-check-circle me-2"></i>Tamamlanan Görevler
+                    </a>
+                    <a href="@Url.Action("Index", "Rapor")" class="btn btn-warning">
+                        <i class="fas fa-chart-bar me-2"></i>Detaylı Rapor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .page-header {
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .page-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin: 0.5rem 0 0 0;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .stats-card {
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    }
+
+    .today-tasks::before {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    }
+
+    .upcoming-tasks::before {
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+    }
+
+    .overdue-tasks::before {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    .total-tasks::before {
+        background: linear-gradient(90deg, #10b981, #059669);
+    }
+
+    .stats-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .stats-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .stats-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-card h5 {
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .stats-trend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    .task-column {
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .task-column-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(30, 41, 59, 0.5);
+    }
+
+    .column-icon {
+        font-size: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+    }
+
+    .today-column .column-icon {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    }
+
+    .upcoming-column .column-icon {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .overdue-column .column-icon {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .column-info h4 {
+        color: var(--text-primary);
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .task-count {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    .task-list {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    .task-item {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .task-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        background: rgba(51, 65, 85, 0.9);
+    }
+
+    .task-priority {
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 0 12px 12px 0;
+    }
+
+    .task-priority.high {
+        background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+    }
+
+    .task-priority.medium {
+        background: linear-gradient(180deg, #f59e0b, #d97706);
+    }
+
+    .task-priority.urgent {
+        background: linear-gradient(180deg, #ef4444, #dc2626);
+    }
+
+    .task-content {
+        flex: 1;
+        margin-left: 0.5rem;
+    }
+
+    .task-title {
+        color: var(--text-primary);
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        font-size: 1rem;
+    }
+
+    .task-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .task-customer, .task-time {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .overdue-time {
+        color: #fca5a5 !important;
+    }
+
+    
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: var(--text-muted);
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .empty-state h5 {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .quick-actions .card {
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    
+</style>

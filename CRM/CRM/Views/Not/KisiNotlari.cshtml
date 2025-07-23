@@ -1,0 +1,41 @@
+﻿@model List<CRM.DTOs.NotDTO>
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <h2>👤 Kişiye Ait Notlar</h2>
+
+        @if (Model.Any())
+        {
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>📋 Başlık</th>
+                            <th>📝 İçerik</th>
+                            <th>📅 Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var not in Model)
+                        {
+                            <tr>
+                                <td><strong>@not.Baslik</strong></td>
+                                <td>@not.Icerik</td>
+                                <td>@not.Tarih?.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+                <h4>📝 Bu kişiye ait not bulunmuyor</h4>
+                <p>Henüz bu kişi için not eklenmemiş.</p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model List<CRM.DTOs.NotDTO>
+
+@{
+    ViewData["Title"] = "Not Listesi";
+}
+
+<link rel="stylesheet" href="~/css/dark-theme.css" />
+
+<div class="container">
+    <div class="card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>📝 Not Listesi</h2>
+            <a href="/Not/Ekle" class="btn btn-primary">
+                ➕ Yeni Not
+            </a>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>🏢 Müşteri</th>
+                            <th>👤 Kişi</th>
+                            <th>📋 Başlık</th>
+                            <th>📝 İçerik</th>
+                            <th>📅 Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var not in Model)
+                        {
+                            <tr>
+                                <td><strong>@not.MusteriAd</strong></td>
+                                <td>@not.KisiAd</td>
+                                <td>@not.Baslik</td>
+                                <td>@not.Icerik</td>
+                                <td>@not.Tarih?.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center" style="padding: 3rem; color: var(--text-muted);">
+                <h4>📝 Henüz not bulunmuyor</h4>
+                <p>İlk notu eklemek için yukarıdaki butona tıklayın.</p>
+            </div>
+        }
+    </div>
+</div>
