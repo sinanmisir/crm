@@ -27,6 +27,7 @@ namespace CRM.Mappings
                 .ForMember(dest => dest.Tarih, opt => opt.MapFrom(src => src.Tarih.HasValue ? src.Tarih.Value.ToDateTime(new TimeOnly(0, 0)) : (DateTime?)null))
                 .ForMember(dest => dest.Asama, opt => opt.MapFrom(src => src.Asama.HasValue ? (FirsatAsama)src.Asama.Value : (FirsatAsama?)null));
             CreateMap<Etiketler, EtiketDTO>();
+            CreateMap<IslemLog, IslemLogDTO>();
         }
     }
 }

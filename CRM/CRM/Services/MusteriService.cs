@@ -20,7 +20,7 @@ namespace CRM.Services
         {
             var sorgu = _context.Musterilers
                 .Include(m => m.MusteriEtiketlers)
-                .ThenInclude(me => me.Etiket)
+                    .ThenInclude(me => me.Etiket)
                 .Where(m => m.SilindiMi == false || m.SilindiMi == null);
 
             if (kullaniciId.HasValue)
@@ -46,7 +46,6 @@ namespace CRM.Services
                 .ToList();
         }
 
-
         public MusteriDTO? GetMusteriById(int id)
         {
             var musteri = _context.Musterilers
@@ -59,6 +58,7 @@ namespace CRM.Services
                 .Include(m => m.Kisilers)
                 .Include(m => m.MusteriEtiketlers)
                     .ThenInclude(me => me.Etiket)
+                .Include(m => m.IslemLogs) // ✅ Loglar dahil edildi
                 .FirstOrDefault(m => m.Id == id && (m.SilindiMi == false || m.SilindiMi == null));
 
             if (musteri == null) return null;
@@ -85,8 +85,12 @@ namespace CRM.Services
                 .Select(e => e.Etiket.Ad)
                 .ToList();
 
+            dto.IslemLoglari = musteri.IslemLogs
+                .OrderByDescending(l => l.Tarih)
+                .Select(l => _mapper.Map<IslemLogDTO>(l))
+                .ToList();
+
             return dto;
         }
-
     }
 }

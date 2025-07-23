@@ -6,8 +6,11 @@ C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\CRM.deps.json
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\CRM.runtimeconfig.json
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\CRM.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\CRM.pdb
+C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\Humanizer.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -166,6 +169,3 @@ C:\Users\pc81\source\repos\CRM\CRM\obj\Debug\net8.0\refint\CRM.dll
 C:\Users\pc81\source\repos\CRM\CRM\obj\Debug\net8.0\CRM.pdb
 C:\Users\pc81\source\repos\CRM\CRM\obj\Debug\net8.0\CRM.genruntimeconfig.cache
 C:\Users\pc81\source\repos\CRM\CRM\obj\Debug\net8.0\ref\CRM.dll
-C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\AutoMapper.dll
-C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\pc81\source\repos\CRM\CRM\bin\Debug\net8.0\BCrypt.Net-Next.dll
